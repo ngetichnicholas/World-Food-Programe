@@ -29,4 +29,22 @@ def add_country(request):
   context = {
     'country_form': country_form,
     }
-  return render(request,"admin/country.html",context)
+  return render(request,"country.html",context)
+
+# Add office
+@login_required
+def add_office(request):
+  if request.method == 'POST':
+    office_form=OfficeForm(request.POST)
+    if office_form.is_valid():
+      office = office_form.save(commit=False)
+      office.save()
+      messages.success(request,'New office added')
+      return redirect('admin')
+
+  else:
+    office_form = OfficeForm()
+  context = {
+    'office_form': office_form,
+    }
+  return render(request,"office.html",context)
