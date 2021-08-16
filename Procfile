@@ -1,0 +1,1 @@
+web: gunicorn wfp_project.wsgi --log-file -
