@@ -13,6 +13,9 @@ from .models import *
 
 # Create your views here.
 
+def admin(request):
+    return render(request,'admin/admin.html')
+
 # Add country
 @login_required
 def add_country(request):
@@ -29,7 +32,7 @@ def add_country(request):
   context = {
     'country_form': country_form,
     }
-  return render(request,"country.html",context)
+  return render(request,"admin/country.html",context)
 
 # Add office
 @login_required
@@ -47,4 +50,4 @@ def add_office(request):
   context = {
     'office_form': office_form,
     }
-  return render(request,"office.html",context)
+  return render(request,"admin/office.html",context)
