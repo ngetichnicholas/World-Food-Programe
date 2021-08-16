@@ -12,7 +12,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from .models import *
 
 # Create your views here.
-
+@login_required
 def admin(request):
     return render(request,'admin/admin.html')
 

@@ -1,0 +1,78 @@
+{% load bootstrap4 %}
+{% load static %}
+{% load cloudinary %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% if title %}
+  <title>{{title}}</title>
+  {% else %}
+  <title>WFP </title>
+  {% endif %}
+
+  {% block styles %}
+  {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+
+  {% endblock styles %}
+</head>
+
+<body>
+
+  <div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+      <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+          <i class="fa fa-bars"></i>
+          <span class="sr-only">Toggle Menu</span>
+        </button>
+      </div>
+      <h1><a href="{% url 'admin' %}" class="logo">WFP</a></h1>
+      <ul class="list-unstyled components mb-5">
+        {% if user.is_authenticated %}
+
+        <a class="nav-item nav-link" href="/logout">Logout</a>
+  
+        {% else %}
+  
+        <a class="nav-item nav-link"  href="{% url 'login' %}">Login</a>
+  
+        {% endif %}
+        <li class="active">
+          <a href="{% url 'admin' %}"><i class="fas fa-home"></i> Dashboard</a>
+        </li>
+        <li class="active">
+            <a href="{% url 'add_country' %}"><i class="fa fa-database" aria-hidden="true"></i>Add Country</a>
+        </li>
+        <li class="active">
+          <a href="{% url 'add_office' %}"><span class="fa fa-database"></span> Add Office</a>
+        </li>
+      </ul>
+
+    </nav>
+
+      <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
+      {% block content %}
+      {% endblock content %}
+    </div>
+  </div>
+
+  {% block scripts %}
+  <script src="../static/js/jquery.min.js"></script>
+  <script src="../static/js/popper.js"></script>
+  <script src="../static/js/bootstrap.min.js"></script>
+  <script src="../static/js/main.js"></script>
+  {% bootstrap_javascript %}
+  {% endblock scripts %}
+</body>
+
+</html>

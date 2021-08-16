@@ -6,7 +6,6 @@ from django.db.models.deletion import CASCADE
 
 
 class User(AbstractUser):
-    USERNAME_FIELD = 'email'
     email = models.EmailField(unique=True)
     first_name =models.CharField(max_length=144,null=True,blank=True)
     last_name = models.CharField(max_length=144,null=True,blank=True)
