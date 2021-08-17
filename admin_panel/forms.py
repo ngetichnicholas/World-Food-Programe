@@ -11,4 +11,4 @@ class CountryForm(forms.ModelForm):
 class OfficeForm(forms.ModelForm):
     class Meta:
       model = Intervention
-      fields = ['name','code_name','start_date','end_date']
+      fields = ['name','code_name','office_id','start_date','end_date']
